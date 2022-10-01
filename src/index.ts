@@ -1,15 +1,21 @@
-// Automatically install clangd binary releases from GitHub.
+// Automatically install an executable released from GitHub.
 //
-// We don't bundle them with the package because they're big; we'd have to
-// include all OS versions, and download them again with every extension update.
+// This lib was forked from
+// [`node-clangd`](https://github.com/clangd/node-clangd) to ensure the
+// existence of various binaries in VS Code. I love how the clangd people
+// implemented it for VS Code, and I wanted to generalize it. The `coc-clangd`
+// is unmaintained although it might work.
+//
+//
 //
 // There are several entry points:
 //  - installation explicitly requested
 //  - checking for updates (manual or automatic)
-//  - no usable clangd found, try to recover
+//  - no usable executable found, try to recover
 // These have different flows, but the same underlying mechanisms.
 import {AbortController} from 'abort-controller';
 import * as child_process from 'child_process';
+import * as decompress from 'decompress';
 import * as fs from 'fs';
 import fetch from 'node-fetch';
 import * as os from 'os';
@@ -18,33 +24,57 @@ import * as readdirp from 'readdirp';
 import * as rimraf from 'rimraf';
 import * as semver from 'semver';
 import * as stream from 'stream';
-import * as unzipper from 'unzipper';
 import {promisify} from 'util';
 import * as which from 'which';
+
+const targz = require('decompress-targz');
+const unzip = require('decompress-unzip');
+
+export type Options = {
+  // The name of the executable without the extension if on Windows. For
+  // example, `clangd`. The value is used in the UI for interacting with the
+  // user but also to get the version number of the binary.
+  executableName: string;
+  // The executable will be invoked with these flags get the version number.
+  versionFlags: string[];
+  // Parse version number output and return with a loose (see `node-semver
+  // --loose`) version number for semver comparison.
+  parseVersion(output: string): string | undefined;
+  // Owner and the repository to find the releases on GitHub or the URL.
+  gh: {owner: string, repo: string} | string;
+  // For picking an asset from the available ones based on the platform and
+  // arch. Should return with the index of the `assets`.
+  chooseAsset(platform: NodeJS.Platform, arch: string, assetsName: string[]):
+      Promise<number>;
+}
 
 // Abstracts the editor UI and configuration.
 // This allows the core installation flows to be shared across editors, by
 // implementing a UI class for each.
-type UI = {
+export type UI = {
   // Root where we should placed downloaded/installed files.
   readonly storagePath: string;
-  // Configured clangd location.
-  clangdPath: string;
-
+  // The configured executable location. Could be missing.
+  executablePath?: string;
+  // Config for the UI.
+  options: Options;
   // Show a generic message to the user.
   info(s: string): void;
   // Show a generic error message to the user.
   error(s: string): void;
   // Show a message and direct the user to a website.
-  showHelp(message: string, url: string): void;
+  showHelp(message: string, url?: string): void;
+  // Optional URL to the public site with the manual installation steps.
+  installURL?: string;
 
   // Ask the user to reload the plugin.
   promptReload(message: string): void;
-  // Ask the user to run installLatest() to upgrade clangd.
+  // Ask the user to run installLatest() to upgrade the executable.
   promptUpdate(oldVersion: string, newVersion: string): void;
-  // Ask the user to run installLatest() to install missing clangd.
+  // Ask the user to run installLatest() to install the missing executable.
   promptInstall(version: string): void;
-  // Ask whether to reuse rather than overwrite an existing clangd installation.
+  // Ask whether to reuse rather than overwrite the existing executable
+  // installation.
   // Undefined means no choice was made, so we shouldn't do either.
   shouldReuse(path: string): Promise<boolean|undefined>;
 
@@ -57,102 +87,112 @@ type UI = {
 }
 
 type InstallStatus = {
-  // Absolute path to clangd, or null if no valid clangd binary is configured.
-  clangdPath: string|null;
+  // Absolute path to the executable, or null if no valid executable is
+  // configured.
+  executablePath: string|null;
   // Background tasks that were started, exposed for testing.
   background: Promise<void>;
 };
 
-// Main startup workflow: check whether the configured clangd binary us usable.
+// Main startup workflow: check whether the configured executable us usable.
 // If not, offer to install one. If so, check for updates.
 export async function prepare(ui: UI,
                               checkUpdate: boolean): Promise<InstallStatus> {
-  let clangdPath = ui.clangdPath;
+  let executablePath = ui.executablePath;
   try {
-    if (path.isAbsolute(clangdPath)) {
-      await promisify(fs.access)(clangdPath);
+    if (path.isAbsolute(executablePath)) {
+      await promisify(fs.access)(executablePath);
     } else {
-      clangdPath = await promisify(which)(clangdPath) as string;
+      executablePath = await promisify(which)(executablePath) as string;
     }
   } catch (e) {
-    // Couldn't find clangd - start recovery flow and stop extension loading.
-    return {clangdPath: null, background: recover(ui)};
+    // Couldn't find the executable - start recovery flow and stop extension
+    // loading.
+    return {executablePath: null, background: recover(ui)};
   }
   // Allow extension to load, asynchronously check for updates.
   return {
-    clangdPath,
+    executablePath: executablePath,
     background: checkUpdate ? checkUpdates(/*requested=*/ false, ui)
                             : Promise.resolve()
   };
 }
 
-// The user has explicitly asked to install the latest clangd.
-// Do so without further prompting, or report an error.
+// The user has explicitly asked to install the latest available executable
+// version from GitHub. Do so without further prompting, or report an error.
 export async function installLatest(ui: UI) {
   const abort = new AbortController();
+  const {options: {executableName, chooseAsset}} = ui;
   try {
-    const release = await Github.latestRelease();
-    const asset = await Github.chooseAsset(release);
-    ui.clangdPath = await Install.install(release, asset, abort, ui);
-    ui.promptReload(`clangd ${release.name} is now installed.`);
+    const release = await Github.latestRelease(ui);
+    const asset =
+        await Github.chooseAsset(release, executableName, chooseAsset);
+    ui.executablePath = await Install.install(release, asset, abort, ui);
+    ui.promptReload(`${executableName} ${release.name} is now installed.`);
   } catch (e) {
     if (!abort.signal.aborted) {
-      console.error('Failed to install clangd: ', e);
-      const message = `Failed to install clangd language server: ${e}\n` +
-                      'You may want to install it manually.';
-      ui.showHelp(message, installURL);
+      console.error(`Failed to install ${executableName}: `, e);
+      const message =
+          `Failed to install ${executableName}: ${e}` +
+          `${ui.installURL ? '\nYou may want to install it manually.' : ''}`;
+      ui.showHelp(message, ui.installURL);
     }
   }
 }
 
-// We have an apparently-valid clangd (`clangdPath`), check for updates.
+// We have an apparently-valid executable, check for updates.
 export async function checkUpdates(requested: boolean, ui: UI) {
   // Gather all the version information to see if there's an upgrade.
+  const {
+    options: {executableName, chooseAsset, versionFlags, parseVersion},
+    executablePath,
+  } = ui;
   try {
-    var release = await Github.latestRelease();
-    await Github.chooseAsset(release); // Ensure a binary for this platform.
-    var upgrade = await Version.upgrade(release, ui.clangdPath);
+    var release = await Github.latestRelease(ui);
+    await Github.chooseAsset(release, executableName,
+                             chooseAsset); // Ensure a binary for this platform.
+    var upgrade = await Version.upgrade(release, executablePath, versionFlags,
+                                        parseVersion);
   } catch (e) {
-    console.log('Failed to check for clangd update: ', e);
+    console.log(`Failed to check for ${executableName} update: `, e);
     // We're not sure whether there's an upgrade: stay quiet unless asked.
     if (requested)
-      ui.error(`Failed to check for clangd update: ${e}`);
+      ui.error(`Failed to check for ${executableName} update: ${e}`);
     return;
   }
-  console.log('Checking for clangd update: available=', upgrade.new,
+  console.log(`Checking for ${executableName} update: available=`, upgrade.new,
               ' installed=', upgrade.old);
   // Bail out if the new version is better or comparable.
   if (!upgrade.upgrade) {
     if (requested)
-      ui.info(`clangd is up-to-date (you have ${upgrade.old}, latest is ${
-          upgrade.new})`);
+      ui.info(`${executableName} is up-to-date (you have ${
+          upgrade.old}, latest is ${upgrade.new})`);
     return;
   }
   ui.promptUpdate(upgrade.old, upgrade.new);
 }
 
-// The extension has detected clangd isn't available.
+// The extension has detected executable isn't available.
 // Inform the user, and if possible offer to install or adjust the path.
 // Unlike installLatest(), we've had no explicit user request or consent yet.
 async function recover(ui: UI) {
+  const {options: {executableName, chooseAsset}} = ui;
   try {
-    const release = await Github.latestRelease();
-    await Github.chooseAsset(release); // Ensure a binary for this platform.
+    const release = await Github.latestRelease(ui);
+    await Github.chooseAsset(release, executableName,
+                             chooseAsset); // Ensure a binary for this platform.
     ui.promptInstall(release.name);
   } catch (e) {
     console.error('Auto-install failed: ', e);
-    ui.showHelp('The clangd language server is not installed.', installURL);
+    ui.showHelp(`The ${executableName} is not installed.`, ui.installURL);
   }
 }
 
-const installURL = 'https://clangd.llvm.org/installation.html';
-// The GitHub API endpoint for the latest binary clangd release.
-let githubReleaseURL =
-    'https://api.github.com/repos/clangd/clangd/releases/latest';
-// Set a fake URL for testing.
-export function fakeGitHubReleaseURL(u: string) { githubReleaseURL = u; }
-let lddCommand = 'ldd';
-export function fakeLddCommand(l: string) { lddCommand = l; }
+function githubReleaseURL(gh: {owner: string, repo: string}|string): string {
+  return typeof gh === 'string' ? gh
+                                : `https://api.github.com/repos/${gh.owner}/${
+                                      gh.repo}/releases/latest`;
+}
 
 // Bits for talking to github's release API
 namespace Github {
@@ -163,9 +203,9 @@ export interface Asset {
   name: string, browser_download_url: string,
 }
 
-// Fetch the metadata for the latest stable clangd release.
-export async function latestRelease(): Promise<Release> {
-  const response = await fetch(githubReleaseURL);
+// Fetch the metadata for the latest stable executable release.
+export async function latestRelease(ui: UI): Promise<Release> {
+  const response = await fetch(githubReleaseURL(ui.options.gh));
   if (!response.ok) {
     console.log(response.url, response.status, response.statusText);
     throw new Error(`Can't fetch release: ${response.statusText}`);
@@ -174,36 +214,17 @@ export async function latestRelease(): Promise<Release> {
 }
 
 // Determine which release asset should be installed for this machine.
-export async function chooseAsset(release: Github.Release):
+export async function chooseAsset(release: Github.Release,
+                                  executableName: string,
+                                  chooseAsset: UI['options']['chooseAsset']):
     Promise<Github.Asset> {
-  const variants: {[key: string]: string} = {
-    'win32': 'windows',
-    'linux': 'linux',
-    'darwin': 'mac',
-  };
-  const variant = variants[os.platform()];
-  if (variant == 'linux') {
-    // Hardcoding this here is sad, but we'd like to offer a nice error message
-    // without making the user download the package first.
-    const minGlibc = new semver.Range('2.18');
-    const oldGlibc = await Version.oldGlibc(minGlibc);
-    if (oldGlibc) {
-      throw new Error('The clangd release is not compatible with your system ' +
-                      `(glibc ${oldGlibc.raw} < ${minGlibc.raw}). ` +
-                      'Try to install it using your package manager instead.');
-    }
-  }
-  // 32-bit vscode is still common on 64-bit windows, so don't reject that.
-  if (variant && (os.arch() == 'x64' || variant == 'windows' ||
-                  // Mac distribution contains a fat binary working on both x64
-                  // and arm64s.
-                  (os.arch() == 'arm64' && variant == 'mac'))) {
-    const substr = 'clangd-' + variant;
-    const asset = release.assets.find(a => a.name.indexOf(substr) >= 0);
-    if (asset)
-      return asset;
-  }
-  throw new Error(`No clangd ${release.name} binary available for ${
+  ;
+  const index = await chooseAsset(os.platform(), os.arch(),
+                                  release.assets.map(({name}) => name));
+  const asset = release.assets[index];
+  if (asset)
+    return asset;
+  throw new Error(`No ${executableName} ${release.name} binary available for ${
       os.platform()}/${os.arch()}`);
 }
 }
@@ -228,33 +249,41 @@ export async function install(release: Github.Release, asset: Github.Asset,
                               abort: AbortController, ui: UI): Promise<string> {
   const dirs = await createDirs(ui);
   const extractRoot = path.join(dirs.install, release.tag_name);
+  const {options: {executableName}} = ui;
   if (await promisify(fs.exists)(extractRoot)) {
     const reuse = await ui.shouldReuse(release.name);
     if (reuse === undefined) {
       // User dismissed prompt, bail out.
       abort.abort();
-      throw new Error(`clangd ${release.name} already installed!`);
+      throw new Error(`${executableName} ${release.name} already installed!`);
     }
     if (reuse) {
-      // Find clangd within the existing directory.
+      // Find the executable within the existing directory.
       let files = (await readdirp.promise(extractRoot)).map(e => e.fullPath);
-      return findExecutable(files);
+      return findExecutable(executableName, files);
     } else {
       // Delete the old version.
       await promisify(rimraf)(extractRoot);
       // continue with installation.
     }
   }
-  const zipFile = path.join(dirs.download, asset.name);
-  await download(asset.browser_download_url, zipFile, abort, ui);
-  const archive = await unzipper.Open.file(zipFile);
-  const executable = findExecutable(archive.files.map(f => f.path));
-  await ui.slow(`Extracting ${asset.name}`,
-                archive.extract({path: extractRoot}));
-  const clangdPath = path.join(extractRoot, executable);
-  await fs.promises.chmod(clangdPath, 0o755);
-  await fs.promises.unlink(zipFile);
-  return clangdPath;
+  const archiveFile = path.join(dirs.download, asset.name);
+  await download(asset.browser_download_url, archiveFile, abort, ui);
+  const files = await ui.slow(`Extracting ${asset.name}`,
+                              unarchive(archiveFile, extractRoot));
+  const executable =
+      findExecutable(executableName, files.files.map(f => f.path));
+  const executablePath = path.join(extractRoot, executable);
+  await fs.promises.chmod(executablePath, 0o755);
+  await fs.promises.unlink(archiveFile);
+  return executablePath;
+}
+
+async function unarchive(archiveFile: string, extractRoot: string):
+    Promise<{files: decompress.File[]}> {
+  const files =
+      await decompress(archiveFile, extractRoot, {plugins: [unzip(), targz()]});
+  return {files};
 }
 
 // Create the 'install' and 'download' directories, and return absolute paths.
@@ -266,13 +295,14 @@ async function createDirs(ui: UI) {
   return {install: install, download: download};
 }
 
-// Find the clangd executable within a set of files.
-function findExecutable(paths: string[]): string {
-  const filename = os.platform() == 'win32' ? 'clangd.exe' : 'clangd';
+// Find the executable within a set of files.
+function findExecutable(executableName: string, paths: string[]): string {
+  const filename =
+      os.platform() == 'win32' ? `${executableName}.exe` : executableName;
   const entry = paths.find(f => path.posix.basename(f) == filename ||
                                 path.win32.basename(f) == filename);
   if (entry == null)
-    throw new Error('Didn\'t find a clangd executable!');
+    throw new Error(`Didn't find a ${executableName} executable!`);
   return entry;
 }
 
@@ -302,18 +332,21 @@ async function download(url: string, dest: string, abort: AbortController,
 }
 }
 
-// Functions dealing with clangd versions.
+// Functions dealing with the executable versions.
 //
-// We parse both github release numbers and installed `clangd --version` output
-// by treating them as SemVer ranges, and offer an upgrade if the version
-// is unambiguously newer.
+// We parse both github release numbers and the version number generated from
+// the installed executable by treating them as SemVer ranges, and offer an
+// upgrade if the version is unambiguously newer.
 //
-// These functions throw if versions can't be parsed (e.g. installed clangd
+// These functions throw if versions can't be parsed (e.g. `installed clangd`
 // is a vendor-modified version).
 namespace Version {
-export async function upgrade(release: Github.Release, clangdPath: string) {
+export async function upgrade(release: Github.Release, executablePath: string,
+                              versionFlags: string[],
+                              parseVersion: UI['options']['parseVersion']) {
   const releasedVer = released(release);
-  const installedVer = await installed(clangdPath);
+  const installedVer =
+      await installed(executablePath, versionFlags, parseVersion);
   return {
     old: installedVer.raw,
     new: releasedVer.raw,
@@ -325,21 +358,15 @@ const loose: semver.Options = {
   'loose': true
 };
 
-// Get the version of an installed clangd binary using `clangd --version`.
-async function installed(clangdPath: string): Promise<semver.Range> {
-  const output = await run(clangdPath, ['--version']);
-  console.log(clangdPath, ' --version output: ', output);
-  const prefix = 'clangd version ';
-  const pos = output.indexOf(prefix);
-  if (pos < 0)
-    throw new Error(`Couldn't parse clangd --version output: ${output}`);
-  if (pos > 0) {
-    const vendor = output.substring(0, pos).trim();
-    if (vendor == 'Apple')
-      throw new Error(`Cannot compare vendor's clangd version: ${output}`);
-  }
-  // Some vendors add trailing ~patchlevel, ignore this.
-  const rawVersion = output.substr(pos + prefix.length).split(/ |~/, 1)[0];
+// Get the version of an installed executable by running a system command and
+// parsing the output.
+async function installed(executablePath: string, flags: string[],
+                         parse: (output: string) => string | undefined):
+    Promise<semver.Range> {
+  run
+  const output = await run(executablePath, flags);
+  console.log(executablePath, ` ${flags.join(' ')} output: `, output);
+  const rawVersion = parse(output);
   return new semver.Range(rawVersion, loose);
 }
 
@@ -350,24 +377,6 @@ function released(release: Github.Release): semver.Range {
           semver.validRange(release.name, loose))
              ? new semver.Range(release.name, loose)
              : new semver.Range(release.tag_name, loose);
-}
-
-// Detect the (linux) system's glibc version. If older than `min`, return it.
-export async function oldGlibc(min: semver.Range): Promise<semver.Range|null> {
-  // ldd is distributed with glibc, so ldd --version should be a good proxy.
-  const output = await run(lddCommand, ['--version']);
-  // The first line is e.g. "ldd (Debian GLIBC 2.29-9) 2.29".
-  const line = output.split('\n', 1)[0];
-  // Require some confirmation this is [e]glibc, and a plausible
-  // version number.
-  const match = line.match(/^ldd .*glibc.* (\d+(?:\.\d+)+)[^ ]*$/i);
-  if (!match || !semver.validRange(match[1], loose)) {
-    console.error(`Can't glibc version from ldd --version output: ${line}`);
-    return null;
-  }
-  const version = new semver.Range(match[1], loose);
-  console.log('glibc is', version.raw, 'min is', min.raw);
-  return rangeGreater(min, version) ? version : null;
 }
 
 // Run a system command and capture any stdout produced.
