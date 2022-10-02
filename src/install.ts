@@ -1,25 +1,29 @@
-// Automatically install clangd binary releases from GitHub.
-// This wraps `@clangd/install` in the VSCode UI. See that package for more.
+// Automatically install an executable releases from GitHub.
+// This wraps `./install` in the VSCode UI. See that package for more.
 
-import * as common from '@clangd/install';
 import AbortController from 'abort-controller';
+import * as path from 'path';
 import * as vscode from 'vscode';
+import * as common from './index';
 
-// Returns the clangd path to be used, or null if clangd is not installed.
-export async function activate(context: vscode.ExtensionContext):
-    Promise<string> {
-  const cfg = vscode.workspace.getConfiguration('clangd');
-  const ui = new UI(context, cfg);
+// Returns the executable path to be used, or null if the executable is not
+// installed.
+export async function activate(context: vscode.ExtensionContext,
+                               options: common.Options): Promise<string> {
+  const cfg = vscode.workspace.getConfiguration(options.executableName);
+  const {executableName} = options;
+  const ui = new UI(options, context, cfg);
   context.subscriptions.push(vscode.commands.registerCommand(
-      'clangd.install', async () => common.installLatest(ui)));
+      `${executableName}.install`, async () => common.installLatest(ui)));
   context.subscriptions.push(vscode.commands.registerCommand(
-      'clangd.update', async () => common.checkUpdates(true, ui)));
+      `${executableName}.update`, async () => common.checkUpdates(true, ui)));
   const status = await common.prepare(ui, cfg.get<boolean>('checkUpdates'));
-  return status.clangdPath;
+  return status.executablePath;
 }
 
-class UI {
-  constructor(private context: vscode.ExtensionContext,
+class UI implements common.UI {
+  constructor(public options: common.Options,
+              private context: vscode.ExtensionContext,
               private config: vscode.WorkspaceConfiguration) {}
 
   get storagePath(): string { return this.context.globalStoragePath; }
@@ -62,13 +66,14 @@ class UI {
   }
 
   async shouldReuse(release: string): Promise<boolean> {
-    const message = `clangd ${release} is already installed!`;
+    const message =
+        `${this.options.executableName} ${release} is already installed!`;
     const use = 'Use the installed version';
     const reinstall = 'Delete it and reinstall';
     const response =
         await vscode.window.showInformationMessage(message, use, reinstall);
     if (response == use) {
-      // Find clangd within the existing directory.
+      // Find the executable within the existing directory.
       return true;
     } else if (response == reinstall) {
       // Remove the existing installation.
@@ -90,10 +95,12 @@ class UI {
   }
 
   async promptUpdate(oldVersion: string, newVersion: string) {
-    const message = 'An updated clangd language server is available.\n ' +
-                    `Would you like to upgrade to clangd ${newVersion}? ` +
-                    `(from ${oldVersion})`;
-    const update = `Install clangd ${newVersion}`;
+    const {executableName} = this.options;
+    const message =
+        `An updated ${executableName} is available.\n ` +
+        `Would you like to upgrade to ${executableName} ${newVersion}? ` +
+        `(from ${oldVersion})`;
+    const update = `Install ${executableName} ${newVersion}`;
     const dontCheck = 'Don\'t ask again';
     const response =
         await vscode.window.showInformationMessage(message, update, dontCheck)
@@ -107,20 +114,22 @@ class UI {
   }
 
   async promptInstall(version: string) {
-    const p = this.clangdPath;
+    const p = this.executablePath;
+    const {executableName} = this.options;
     let message = '';
     if (p.indexOf(path.sep) < 0) {
-      message += `The '${p}' language server was not found on your PATH.\n`;
+      message += `The '${p}' was not found on your PATH.\n`;
     } else {
-      message += `The clangd binary '${p}' was not found.\n`;
+      message += `The ${executableName} binary '${p}' was not found.\n`;
     }
-    message += `Would you like to download and install clangd ${version}?`;
+    message +=
+        `Would you like to download and install ${executableName} ${version}?`;
     if (await vscode.window.showInformationMessage(message, 'Install'))
       common.installLatest(this);
   }
 
-  get clangdPath(): string { return this.config.get<string>('path')!; }
-  set clangdPath(p: string) {
+  get executablePath(): string { return this.config.get<string>('path')!; }
+  set executablePath(p: string) {
     this.config.update('path', p, vscode.ConfigurationTarget.Global);
   }
 }
