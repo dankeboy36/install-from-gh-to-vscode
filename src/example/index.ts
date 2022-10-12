@@ -6,7 +6,7 @@ import {installLatest, Options, prepare, UI} from '../index';
 
 class Noop implements UI {
   constructor(readonly storagePath: string, public options: Options) {}
-  executablePath: string | undefined = undefined;
+  executablePath: string|undefined = undefined;
   info(): void {}
   error(): void {}
   showHelp(): void {}

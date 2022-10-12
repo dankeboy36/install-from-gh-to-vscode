@@ -130,8 +130,10 @@ class UI implements common.UI {
       common.installLatest(this);
   }
 
-  get executablePath(): string | undefined { return this.config.get<string>('path'); }
-  set executablePath(p: string | undefined) {
+  get executablePath(): string|undefined {
+    return this.config.get<string>('path');
+  }
+  set executablePath(p: string|undefined) {
     this.config.update('path', p, vscode.ConfigurationTarget.Global);
   }
 }
