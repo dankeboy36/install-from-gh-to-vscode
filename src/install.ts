@@ -117,7 +117,9 @@ class UI implements common.UI {
     const p = this.executablePath;
     const {executableName} = this.options;
     let message = '';
-    if (p.indexOf(path.sep) < 0) {
+    if (!p) {
+      message += `The ${executableName} binary was not found.\n`;
+    } else if (p.indexOf(path.sep) < 0) {
       message += `The '${p}' was not found on your PATH.\n`;
     } else {
       message += `The ${executableName} binary '${p}' was not found.\n`;
@@ -128,8 +130,8 @@ class UI implements common.UI {
       common.installLatest(this);
   }
 
-  get executablePath(): string { return this.config.get<string>('path')!; }
-  set executablePath(p: string) {
+  get executablePath(): string | undefined { return this.config.get<string>('path'); }
+  set executablePath(p: string | undefined) {
     this.config.update('path', p, vscode.ConfigurationTarget.Global);
   }
 }

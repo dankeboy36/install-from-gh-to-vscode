@@ -6,6 +6,7 @@ import {installLatest, Options, prepare, UI} from '../index';
 
 class Noop implements UI {
   constructor(readonly storagePath: string, public options: Options) {}
+  executablePath: string | undefined = undefined;
   info(): void {}
   error(): void {}
   showHelp(): void {}
@@ -28,7 +29,7 @@ const arduinoCliOptions: Options = {
   parseVersion(output: string):
       string { return JSON.parse(output.trim()).VersionString; },
   async chooseAsset(platform: NodeJS.Platform, arch: string,
-                    assetsName: string[]): Promise<number> {
+                    assetNames: string[]): Promise<number> {
     return 6; // 'arduino-cli_0.27.1_macOS_64bit.tar.gz'
   }
 };

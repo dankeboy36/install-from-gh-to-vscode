@@ -44,7 +44,7 @@ export type Options = {
   gh: {owner: string, repo: string} | string;
   // For picking an asset from the available ones based on the platform and
   // arch. Should return with the index of the `assets`.
-  chooseAsset(platform: NodeJS.Platform, arch: string, assetsName: string[]):
+  chooseAsset(platform: NodeJS.Platform, arch: string, assetNames: string[]):
       Promise<number>;
 }
 
@@ -55,7 +55,7 @@ export type UI = {
   // Root where we should placed downloaded/installed files.
   readonly storagePath: string;
   // The configured executable location. Could be missing.
-  executablePath?: string;
+  executablePath: string | undefined;
   // Config for the UI.
   options: Options;
   // Show a generic message to the user.
