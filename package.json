@@ -1,6 +1,6 @@
 {
   "name": "install-from-gh-to-vscode",
-  "version": "0.1.0-beta.3",
+  "version": "0.1.0-beta.4",
   "description": "Lib for VS Code extensions installing executables from GitHub",
   "main": "out/src/index.js",
   "types": "out/src/index.d.ts",

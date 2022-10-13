@@ -7,37 +7,36 @@ import * as vscode from 'vscode';
 import * as common from './index';
 
 export class ExecutableContext {
-  readonly id: string;
-  private readonly ui: UI;
-
   constructor(protected readonly context: vscode.ExtensionContext,
-              protected readonly options: common.Options) {
-    this.id = idOf(context, options);
-    this.ui = new UI(options, context, this.cfg);
+              protected readonly options: common.Options,
+              protected readonly configSection: string) {}
+
+  get executablePath(): string|undefined {
+    return this.createUI().executablePath;
   }
 
-  get executablePath(): string|undefined { return this.ui.executablePath; }
+  async install(): Promise<void> {
+    return common.installLatest(this.createUI());
+  }
 
-  async install(): Promise<void> { return common.installLatest(this.ui); }
-
-  async update(): Promise<void> { return common.checkUpdates(true, this.ui); }
+  async update(): Promise<void> {
+    return common.checkUpdates(true, this.createUI());
+  }
 
   async prepare(): Promise<string|undefined> {
+    const ui = this.createUI();
     const status =
-        await common.prepare(this.ui, this.cfg.get<boolean>('checkUpdates'));
+        await common.prepare(ui, this.config.get<boolean>(ui.checkUpdatesKey));
     return status.executablePath;
   }
 
-  private get cfg(): vscode.WorkspaceConfiguration {
-    return vscode.workspace.getConfiguration(this.id);
+  private createUI(): UI {
+    return new UI(this.options, this.context, this.config);
   }
-}
 
-function idOf(context: vscode.ExtensionContext,
-              options: common.Options): string {
-  const {extension: {id: extensionId}} = context;
-  const {executableName} = options;
-  return `${extensionId}.${executableName}-context`;
+  private get config(): vscode.WorkspaceConfiguration {
+    return vscode.workspace.getConfiguration(this.configSection);
+  }
 }
 
 class UI implements common.UI {
@@ -46,9 +45,7 @@ class UI implements common.UI {
               private config: vscode.WorkspaceConfiguration) {}
 
   get storagePath(): string { return this.context.globalStoragePath; }
-  async choose(prompt: string, options: string[]): Promise<string|undefined> {
-    return await vscode.window.showInformationMessage(prompt, ...options);
-  }
+
   slow<T>(title: string, result: Promise<T>) {
     const opts = {
       location: vscode.ProgressLocation.Notification,
@@ -79,10 +76,6 @@ class UI implements common.UI {
   }
   error(s: string) { vscode.window.showErrorMessage(s); }
   info(s: string) { vscode.window.showInformationMessage(s); }
-  command(name: string, body: () => any) {
-    this.context.subscriptions.push(
-        vscode.commands.registerCommand(name, body));
-  }
 
   async shouldReuse(release: string): Promise<boolean> {
     const message =
@@ -127,7 +120,7 @@ class UI implements common.UI {
       common.installLatest(this);
     }
     else if (response == dontCheck) {
-      this.config.update('checkUpdates', false,
+      this.config.update(this.checkUpdatesKey, false,
                          vscode.ConfigurationTarget.Global);
     }
   }
@@ -150,9 +143,14 @@ class UI implements common.UI {
   }
 
   get executablePath(): string|undefined {
-    return this.config.get<string>('path');
+    return this.config.get<string>(this.pathKey);
   }
   set executablePath(p: string|undefined) {
-    this.config.update('path', p, vscode.ConfigurationTarget.Global);
+    this.config.update(this.pathKey, p, vscode.ConfigurationTarget.Global);
+  }
+
+  get pathKey(): string { return `${this.options.executableName}.path`; }
+  get checkUpdatesKey(): string {
+    return `${this.options.executableName}.checkUpdates`;
   }
 }
