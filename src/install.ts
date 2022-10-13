@@ -6,19 +6,38 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import * as common from './index';
 
-// Returns the executable path to be used, or null if the executable is not
-// installed.
-export async function activate(context: vscode.ExtensionContext,
-                               options: common.Options): Promise<string> {
-  const cfg = vscode.workspace.getConfiguration(options.executableName);
+export class ExecutableContext {
+  readonly id: string;
+  private readonly ui: UI;
+
+  constructor(protected readonly context: vscode.ExtensionContext,
+              protected readonly options: common.Options) {
+    this.id = idOf(context, options);
+    this.ui = new UI(options, context, this.cfg);
+  }
+
+  get executablePath(): string|undefined { return this.ui.executablePath; }
+
+  async install(): Promise<void> { return common.installLatest(this.ui); }
+
+  async update(): Promise<void> { return common.checkUpdates(true, this.ui); }
+
+  async prepare(): Promise<string|undefined> {
+    const status =
+        await common.prepare(this.ui, this.cfg.get<boolean>('checkUpdates'));
+    return status.executablePath;
+  }
+
+  private get cfg(): vscode.WorkspaceConfiguration {
+    return vscode.workspace.getConfiguration(this.id);
+  }
+}
+
+function idOf(context: vscode.ExtensionContext,
+              options: common.Options): string {
+  const {extension: {id: extensionId}} = context;
   const {executableName} = options;
-  const ui = new UI(options, context, cfg);
-  context.subscriptions.push(vscode.commands.registerCommand(
-      `${executableName}.install`, async () => common.installLatest(ui)));
-  context.subscriptions.push(vscode.commands.registerCommand(
-      `${executableName}.update`, async () => common.checkUpdates(true, ui)));
-  const status = await common.prepare(ui, cfg.get<boolean>('checkUpdates'));
-  return status.executablePath;
+  return `${extensionId}.${executableName}-context`;
 }
 
 class UI implements common.UI {
