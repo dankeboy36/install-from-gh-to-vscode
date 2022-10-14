@@ -25,9 +25,8 @@ export class ExecutableContext {
 
   async prepare(): Promise<string|undefined> {
     const ui = this.createUI();
-    const status =
-        await common.prepare(ui, this.config.get<boolean>(ui.checkUpdatesKey));
-    return status.executablePath;
+    const status = await common.prepare(ui, ui.checkUpdates);
+    return status.executablePath || undefined; // TODO: enable strictNullChecks
   }
 
   private createUI(): UI {
@@ -40,7 +39,7 @@ export class ExecutableContext {
 }
 
 class UI implements common.UI {
-  constructor(public options: common.Options,
+  constructor(public readonly options: common.Options,
               private context: vscode.ExtensionContext,
               private config: vscode.WorkspaceConfiguration) {}
 
@@ -77,7 +76,7 @@ class UI implements common.UI {
   error(s: string) { vscode.window.showErrorMessage(s); }
   info(s: string) { vscode.window.showInformationMessage(s); }
 
-  async shouldReuse(release: string): Promise<boolean> {
+  async shouldReuse(release: string): Promise<boolean|undefined> {
     const message =
         `${this.options.executableName} ${release} is already installed!`;
     const use = 'Use the installed version';
@@ -120,8 +119,7 @@ class UI implements common.UI {
       common.installLatest(this);
     }
     else if (response == dontCheck) {
-      this.config.update(this.checkUpdatesKey, false,
-                         vscode.ConfigurationTarget.Global);
+      this.checkUpdates = false;
     }
   }
 
@@ -142,15 +140,37 @@ class UI implements common.UI {
       common.installLatest(this);
   }
 
-  get executablePath(): string|undefined {
-    return this.config.get<string>(this.pathKey);
-  }
-  set executablePath(p: string|undefined) {
-    this.config.update(this.pathKey, p, vscode.ConfigurationTarget.Global);
-  }
+  get executablePath(): string|undefined { return this.get('path'); }
+  set executablePath(p: string|undefined) { this.set('path', p); }
 
-  get pathKey(): string { return `${this.options.executableName}.path`; }
-  get checkUpdatesKey(): string {
-    return `${this.options.executableName}.checkUpdates`;
+  get checkUpdates(): boolean { return !!this.get('checkUpdates'); }
+  set checkUpdates(b: boolean) { this.set('checkUpdates', b); }
+
+  private get<T extends ManagedExecutable, K extends keyof T>(key: K):
+      T[K]|undefined {
+    return this.config.get(this.options.executableName, {} as T)[key];
   }
+  private set<T extends ManagedExecutable, K extends keyof T>(key: K,
+                                                              value: T[K]):
+      Promise<void> {
+    const root = this.config.get<ManagedExecutables>('', {});
+    let current = root[this.options.executableName] as T | undefined;
+    if (!current) {
+      current = {} as T;
+      root[this.options.executableName] = current;
+    }
+    if (value === undefined) {
+      delete current[key];
+    } else {
+      current[key] = value;
+    }
+    return Promise.resolve(
+        this.config.update('', root, vscode.ConfigurationTarget.Global));
+  }
+}
+
+type ManagedExecutables = Record<string, ManagedExecutable>;
+interface ManagedExecutable {
+  path?: string;
+  checkUpdates?: boolean;
 }
