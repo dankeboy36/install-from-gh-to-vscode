@@ -148,12 +148,13 @@ class UI implements common.UI {
 
   private get<T extends ManagedExecutable, K extends keyof T>(key: K):
       T[K]|undefined {
-    return this.config.get(this.options.executableName, {} as T)[key];
+    return this.config.get(`managedExecutables.${this.options.executableName}`,
+                           {} as T)[key];
   }
   private set<T extends ManagedExecutable, K extends keyof T>(key: K,
                                                               value: T[K]):
       Promise<void> {
-    const root = this.config.get<ManagedExecutables>('', {});
+    const root = this.config.get<ManagedExecutables>('managedExecutables', {});
     let current = root[this.options.executableName] as T | undefined;
     if (!current) {
       current = {} as T;
@@ -164,8 +165,8 @@ class UI implements common.UI {
     } else {
       current[key] = value;
     }
-    return Promise.resolve(
-        this.config.update('', root, vscode.ConfigurationTarget.Global));
+    return Promise.resolve(this.config.update(
+        'managedExecutables', root, vscode.ConfigurationTarget.Global));
   }
 }
 
