@@ -8,7 +8,8 @@ import * as tmp from 'tmp-promise';
 import * as install from '../src/index';
 
 const oldClangd = process.cwd() + '/test/assets/fake-clangd-5/clangd';
-const newClangd = process.cwd() + '/test/assets/fake-clangd-15/clangd';
+const newClangdV15 = process.cwd() + '/test/assets/fake-clangd-15/clangd';
+const newClangdV16 = process.cwd() + '/test/assets/fake-clangd-16/clangd';
 const unversionedClangd =
     process.cwd() + '/test/assets/fake-clangd-unversioned/clangd';
 const appleClangd = process.cwd() + '/test/assets/apple-clangd-5/clangd';
@@ -19,6 +20,7 @@ const notGlibcLdd = process.cwd() + '/test/assets/ldd/not-glibc';
 const missingClangd = process.cwd() + '/test/assets/missing/clangd';
 const releases = 'http://127.0.0.1:9999/release.json';
 const incompatibleReleases = 'http://127.0.0.1:9999/release-incompatible.json';
+const wrongUrlReleases = 'http://127.0.0.1:9999/release-wrong-url.json';
 
 const clangdOptions: install.Options = {
   executableName: 'clangd',
@@ -34,7 +36,7 @@ const clangdOptions: install.Options = {
         throw new Error(`Cannot compare vendor's clangd version: ${output}`);
     }
     // Some vendors add trailing ~patchlevel, ignore this.
-    const rawVersion = output.substr(pos + prefix.length).split(/ |~/, 1)[0];
+    const rawVersion = output.substr(pos + prefix.length).split(/\s|~/, 1)[0];
     return rawVersion;
   },
   gh: 'https://api.github.com/repos/clangd/clangd/releases/latest',
@@ -174,6 +176,20 @@ test('install: no binary for platform', async (assert, ui) => {
   assert.deepEqual(ui.events, ['showHelp']);
 });
 
+test('install: wrong url', async (assert, ui) => {
+  ui.options.gh = wrongUrlReleases;
+  await install.installLatest(ui);
+
+  const installedClangd =
+      path.join(ui.storagePath, 'install', '10.0', 'fake-clangd-10', 'clangd');
+  assert.false(fs.existsSync(installedClangd),
+               `Extracted clangd exists: ${installedClangd}`);
+  assert.true(ui.executablePath.endsWith('fake-clangd-5/clangd'),
+              'clangdPath unmodified');
+  assert.deepEqual(ui.events,
+                   [/*download*/ 'progress', /*download-fails*/ 'showHelp']);
+});
+
 if (os.platform() == 'linux') {
   test('install: new glibc', async (assert, ui) => {
     ui.lldCommand = newLdd;
@@ -246,7 +262,14 @@ test('update: from 5 to 10', async (assert, ui) => {
 });
 
 test('update: from 15 to 10', async (assert, ui) => {
-  ui.executablePath = newClangd;
+  ui.executablePath = newClangdV15;
+  await install.checkUpdates(true, ui);
+
+  assert.deepEqual(ui.events, [/*up-to-date*/ 'info']);
+});
+
+test('update: from 16 to 10', async (assert, ui) => {
+  ui.executablePath = newClangdV16;
   await install.checkUpdates(true, ui);
 
   assert.deepEqual(ui.events, [/*up-to-date*/ 'info']);
@@ -312,7 +335,7 @@ test('prepare: old clangd installed, new unavailable', async (assert, ui) => {
 });
 
 test('prepare: new clangd installed', async (assert, ui) => {
-  ui.executablePath = newClangd;
+  ui.executablePath = newClangdV15;
   const status = await install.prepare(ui, true);
   await status.background;
 
