@@ -1,4 +1,4 @@
-// Automatically install an executable released from GitHub.
+// Automatically downloads an executable from a GitHub release.
 //
 // This lib was forked from
 // [`node-clangd`](https://github.com/clangd/node-clangd) to ensure the
@@ -30,7 +30,17 @@ import * as which from 'which';
 const targz = require('decompress-targz');
 const unzip = require('decompress-unzip');
 
+// Owner and the repository to find the releases on GitHub or the URL.
+export type GithubId = {
+  owner: string; repo: string;
+};
+
 export type Options = {
+  // If defined, the most recent compatible version of the executable will be
+  // downloaded instead of the latest one.
+  // For the spec how semver ranges work, please reference the
+  // [`node-semver`](https://github.com/npm/node-semver#ranges) documentation.
+  versionRange?: string;
   // The name of the executable without the extension if on Windows. For
   // example, `clangd`. The value is used in the UI for interacting with the
   // user but also to get the version number of the binary.
@@ -38,14 +48,14 @@ export type Options = {
   // The executable will be invoked with these flags get the version number.
   versionFlags: string[];
   // Parse version number output and return with a loose (see `node-semver
-  // --loose`) version number for semver comparison.
+  // --loose`) version number for semver comparison. `undefined` if cannot
+  // parse.
   parseVersion(output: string): string | undefined;
-  // Owner and the repository to find the releases on GitHub or the URL.
-  gh: {owner: string, repo: string} | string;
+  // The to identify the GitHub release for the download.
+  gh: GithubId;
   // For picking an asset from the available ones based on the platform and
   // arch. Should return with the index of the `assets`.
-  chooseAsset(platform: NodeJS.Platform, arch: string, assetNames: string[]):
-      Promise<number>;
+  pickAsset(assetNames: string[]): Promise<number>;
 }
 
 // Abstracts the editor UI and configuration.
@@ -122,7 +132,7 @@ export async function prepare(ui: UI,
 // version from GitHub. Do so without further prompting, or report an error.
 export async function installLatest(ui: UI) {
   const abort = new AbortController();
-  const {options: {executableName, chooseAsset}} = ui;
+  const {options: {executableName, pickAsset: chooseAsset}} = ui;
   try {
     const release = await Github.latestRelease(ui);
     const asset =
@@ -144,7 +154,8 @@ export async function installLatest(ui: UI) {
 export async function checkUpdates(requested: boolean, ui: UI) {
   // Gather all the version information to see if there's an upgrade.
   const {
-    options: {executableName, chooseAsset, versionFlags, parseVersion},
+    options:
+        {executableName, pickAsset: chooseAsset, versionFlags, parseVersion},
     executablePath,
   } = ui;
   try {
@@ -176,7 +187,7 @@ export async function checkUpdates(requested: boolean, ui: UI) {
 // Inform the user, and if possible offer to install or adjust the path.
 // Unlike installLatest(), we've had no explicit user request or consent yet.
 async function recover(ui: UI) {
-  const {options: {executableName, chooseAsset}} = ui;
+  const {options: {executableName, pickAsset: chooseAsset}} = ui;
   try {
     const release = await Github.latestRelease(ui);
     await Github.chooseAsset(release, executableName,
@@ -188,10 +199,31 @@ async function recover(ui: UI) {
   }
 }
 
-function githubReleaseURL(gh: {owner: string, repo: string}|string): string {
-  return typeof gh === 'string' ? gh
-                                : `https://api.github.com/repos/${gh.owner}/${
-                                      gh.repo}/releases/latest`;
+export const defaultGithubReleaseURL: (gh: GithubId, tag: string|null) =>
+    string = (gh, tag): string => {
+      // Get release by tag name if specified:
+      // https://api.github.com/repos/OWNER/REPO/releases/tags/TAG
+      // (https://docs.github.com/en/rest/releases/releases#get-a-release-by-tag-name)
+      // Otherwise, get the latest release.
+      return `https://api.github.com/repos/${gh.owner}/${gh.repo}/releases/${
+          tag ? `tags/${tag}` : 'latest'}`;
+    };
+let githubReleaseURL = defaultGithubReleaseURL;
+
+// Set a fake URL for testing.
+export function fakeGitHubReleaseURL(u: typeof githubReleaseURL) {
+  githubReleaseURL = u;
+}
+
+const defaultGithubTagRefsURL: (gh: GithubId) => string = (gh): string => {
+  return `https://api.github.com/repos/${gh.owner}/${
+      gh.repo}/git/matching-refs/tags`
+};
+let githubTagRefsURL = defaultGithubTagRefsURL;
+
+// Set a fake tag refs URL for testing.
+export function fakeGitHubTagRefsURL(u: typeof githubTagRefsURL) {
+  githubTagRefsURL = u;
 }
 
 // Bits for talking to github's release API
@@ -202,10 +234,27 @@ export interface Release {
 export interface Asset {
   name: string, browser_download_url: string,
 }
+// This is not the response of https://api.github.com/repos/OWNER/REPO/tags
+// (https://docs.github.com/en/rest/repos/repos#list-repository-tags) because
+// the response processing requires pagination
+// (https://docs.github.com/en/rest/guides/traversing-with-pagination).
+// The https://api.github.com/repos/OWNER/REPO/git/matching-refs/REF response
+// contains all refs. Here, :REF is tags
+// (https://docs.github.com/en/rest/git/refs#list-matching-references).
+interface TagRef {
+  // For example refs/tags/0.1.22
+  ref: string;
+}
 
-// Fetch the metadata for the latest stable executable release.
+// TODO curl
+// https://api.github.com/repos/arduino/arduino-cli/git/matching-refs/tags to
+// get all tags -> find highest version in range, get release Fetch the
+// metadata for the latest stable executable release.
 export async function latestRelease(ui: UI): Promise<Release> {
-  const response = await fetch(githubReleaseURL(ui.options.gh));
+  const version = await latestCompatibleVersion(ui);
+  const response =
+      await fetch(githubReleaseURL(ui.options.gh, version),
+                  {headers: {'Accept': 'application/vnd.github+json'}});
   if (!response.ok) {
     console.log(response.url, response.status, response.statusText);
     throw new Error(`Can't fetch release: ${response.statusText}`);
@@ -213,14 +262,59 @@ export async function latestRelease(ui: UI): Promise<Release> {
   return await response.json() as Release;
 }
 
+async function latestCompatibleVersion(ui: UI): Promise<string|undefined> {
+  const {versionRange, executableName} = ui.options;
+  if (!versionRange) {
+    return undefined;
+  }
+  if (!semver.validRange(versionRange)) {
+    throw new Error(`Invalid version range: ${versionRange}.`);
+  }
+  const versionConstrains = new semver.Range(versionRange, true);
+  const refs = await tagRefs(ui);
+  const tags = refs.map(toSemver)
+                   .filter(semver => Boolean(semver))
+                   .sort(semver.compare)
+                   .reverse();
+  for (const tag of tags) {
+    if (versionConstrains.test(tag)) {
+      return tag.version;
+    }
+  }
+  throw new Error(`Could not find a compatible version for ${
+      executableName}. Expected ${versionRange}.`);
+}
+
+function tag(tagRef: TagRef): string {
+  return tagRef.ref.substring('refs/tags/'.length);
+}
+
+function toSemver(tagRef: TagRef): semver.SemVer|undefined {
+  const maybeSemver = tag(tagRef);
+  if (semver.valid(maybeSemver)) {
+    return new semver.SemVer(maybeSemver, true);
+  }
+  return undefined;
+}
+
+async function tagRefs(ui: UI): Promise<TagRef[]> {
+  const response =
+      await fetch(githubTagRefsURL(ui.options.gh),
+                  {headers: {'Accept': 'application/vnd.github+json'}});
+  if (!response.ok) {
+    console.log(response.url, response.status, response.statusText);
+    throw new Error(`Can't fetch tag refs: ${response.statusText}`);
+  }
+  return await response.json() as TagRef[];
+}
+
 // Determine which release asset should be installed for this machine.
 export async function chooseAsset(release: Github.Release,
                                   executableName: string,
-                                  chooseAsset: UI['options']['chooseAsset']):
+                                  chooseAsset: UI['options']['pickAsset']):
     Promise<Github.Asset> {
   ;
-  const index = await chooseAsset(os.platform(), os.arch(),
-                                  release.assets.map(({name}) => name));
+  const index = await chooseAsset(release.assets.map(({name}) => name));
   const asset = release.assets[index];
   if (asset)
     return asset;

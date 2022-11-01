@@ -23,14 +23,15 @@ class Noop implements UI {
 }
 
 const arduinoCliOptions: Options = {
+  // pinned version range
+  versionRange: '<=0.27.0',
   gh: {owner: 'arduino', repo: 'arduino-cli'},
   executableName: 'arduino-cli',
   versionFlags: ['version', '--format', 'json'],
   parseVersion(output: string):
       string { return JSON.parse(output.trim()).VersionString; },
-  async chooseAsset(platform: NodeJS.Platform, arch: string,
-                    assetNames: string[]): Promise<number> {
-    return 6; // 'arduino-cli_0.27.1_macOS_64bit.tar.gz'
+  async pickAsset(assetNames: string[]): Promise<number> {
+    return 6; // 'arduino-cli_0.27.0_macOS_64bit.tar.gz'
   }
 };
 
@@ -49,7 +50,6 @@ withDir(async ({path: storagePath}) => {
   console.log(`${executableName} is available: ${
       spawnSync(cliPathAfterInstall, ['version'], {encoding: 'utf8'})
           .stdout.toString()
-          .trim()}`); // arduino-cli is available: arduino-cli
-                      // Version: 0.27.1 Commit: a900cfb2 Date:
-                      // 2022-09-06T16:44:27Z
+          .trim()}`); // arduino-cli is available: arduino-cli  Version: 0.27.0
+                      // Commit: c2af7c5a Date: 2022-09-05T08:10:30Z
 }, {unsafeCleanup: true});
