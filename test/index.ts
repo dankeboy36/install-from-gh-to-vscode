@@ -1,11 +1,15 @@
+import {exec} from 'child_process';
 import * as fs from 'fs';
 import * as http from 'http';
 import * as nodeStatic from 'node-static';
 import * as os from 'os';
 import * as path from 'path';
+import * as semver from 'semver';
 import * as tape from 'tape';
 import * as tmp from 'tmp-promise';
-import * as install from '../src/index';
+import {promisify} from 'util';
+
+import * as Install from '../src/index';
 
 const oldClangd = process.cwd() + '/test/assets/fake-clangd-5/clangd';
 const newClangdV15 = process.cwd() + '/test/assets/fake-clangd-15/clangd';
@@ -21,8 +25,63 @@ const missingClangd = process.cwd() + '/test/assets/missing/clangd';
 const releases = 'http://127.0.0.1:9999/release.json';
 const incompatibleReleases = 'http://127.0.0.1:9999/release-incompatible.json';
 const wrongUrlReleases = 'http://127.0.0.1:9999/release-wrong-url.json';
+const tagRefs = 'http://127.0.0.1:9999/tag-refs.json';
+const release = (version: string) =>
+    `http://127.0.0.1:9999/release-${version}.json`
 
-const clangdOptions: install.Options = {
+type ClangdInstall = Omit<typeof Install, 'prepare'|'fakeGitHubReleaseURL'>&{
+  fakeLddCommand(l: string): void;
+  fakeGitHubReleaseURL(arg: string|
+                       ((gh: Install.GithubId, tag: string) => string)): void;
+  fakeGitHubTagRefsURL(arg: string|((gh: Install.GithubId) => string)): void;
+  prepare(ui: Install.UI, checkUpdate: boolean):
+      Promise<{clangdPath: string | null; background: Promise<void>;}>;
+  ui: FakeUI;
+}
+let install: ClangdInstall;
+function prepareInstall(ui: FakeUI): void {
+  install = {
+    ui,
+    fakeLddCommand: (l: string) => ui.lddCommand = l,
+    prepare: async (ui, checkUpdate) => {
+      const status = await Install.prepare(ui, checkUpdate);
+      return { ...status, clangdPath: status.executablePath, }
+    },
+    checkUpdates: Install.checkUpdates,
+    installLatest: Install.installLatest,
+    defaultGithubReleaseURL: Install.defaultGithubReleaseURL,
+    fakeGitHubReleaseURL:
+        (arg: string|((gh: Install.GithubId, tag: string) => string)) =>
+            Install.fakeGitHubReleaseURL(typeof arg === 'function' ? arg
+                                                                   : () => arg),
+    fakeGitHubTagRefsURL: (arg: string|((gh: Install.GithubId) => string)) =>
+        Install.fakeGitHubTagRefsURL(typeof arg === 'function' ? arg
+                                                               : () => arg),
+  }
+}
+
+// From
+// https://github.com/clangd/node-clangd/blob/2ccb3395391004aee1349df47f44be190289382e/src/index.ts#L355-L371
+// Detect the (linux) system's glibc version. If older than `min`, return it.
+async function execOldGlibc(min: semver.Range): Promise<semver.Range|null> {
+  // ldd is distributed with glibc, so ldd --version should be a good proxy.
+  const {stdout: output} =
+      await promisify(exec)(`${install.ui.lddCommand} --version`);
+  // The first line is e.g. "ldd (Debian GLIBC 2.29-9) 2.29".
+  const line = output.split('\n', 1)[0];
+  // Require some confirmation this is [e]glibc, and a plausible
+  // version number.
+  const match = line.match(/^ldd .*glibc.* (\d+(?:\.\d+)+)[^ ]*$/i);
+  if (!match || !semver.validRange(match[1], true)) {
+    console.error(`Can't glibc version from ldd --version output: ${line}`);
+    return null;
+  }
+  const version = new semver.Range(match[1], true);
+  console.log('glibc is', version.raw, 'min is', min.raw);
+  return semver.gtr(semver.minVersion(min), version) ? version : null;
+}
+
+const clangdOptions: Install.Options = {
   executableName: 'clangd',
   versionFlags: ['--version'],
   parseVersion(output: string): string {
@@ -39,9 +98,10 @@ const clangdOptions: install.Options = {
     const rawVersion = output.substr(pos + prefix.length).split(/\s|~/, 1)[0];
     return rawVersion;
   },
-  gh: 'https://api.github.com/repos/clangd/clangd/releases/latest',
-  async chooseAsset(platform: NodeJS.Platform, arch: string,
-                    assetNames: string[]): Promise<number> {
+  gh: {owner: 'clangd', repo: 'clangd'},
+  async pickAsset(assetNames: string[]): Promise<number> {
+    const platform = os.platform();
+    const arch = os.arch();
     const variants: {[key: string]: string} = {
       'win32': 'windows',
       'linux': 'linux',
@@ -50,15 +110,15 @@ const clangdOptions: install.Options = {
     const variant = variants[platform];
     if (variant == 'linux') {
       // Hardcoding this here is sad, but we'd like to offer a nice error
-      // message without making the user download the package first. const
-      // minGlibc = new semver.Range('2.18'); const oldGlibc = await
-      // Version.oldGlibc(minGlibc); if (oldGlibc) {
-      //   throw new Error('The clangd release is not compatible with your
-      //   system ' +
-      //                   `(glibc ${oldGlibc.raw} < ${minGlibc.raw}). ` +
-      //                   'Try to install it using your package manager
-      //                   instead.');
-      // }
+      // message without making the user download the package first.
+      const minGlibc = new semver.Range('2.18');
+      const oldGlibc = await execOldGlibc(minGlibc);
+      if (oldGlibc) {
+        throw new Error(
+            'The clangd release is not compatible with your system ' +
+            `(glibc ${oldGlibc.raw} < ${minGlibc.raw}). ` +
+            'Try to install it using your package manager instead.');
+      }
     }
     // 32-bit vscode is still common on 64-bit windows, so don't reject that.
     if (variant && (arch == 'x64' || variant == 'windows' ||
@@ -74,20 +134,18 @@ const clangdOptions: install.Options = {
 }
 
 // A fake editor that records interactions.
-class FakeUI implements install.UI {
+class FakeUI implements Install.UI {
   constructor(public readonly storagePath: string) {
     console.log('Storage is', this.storagePath);
+    prepareInstall(this);
   }
-
-  options = clangdOptions;
   readonly events: string[] = [];
   private event(s: string) {
     console.log(s);
     this.events.push(s);
   }
 
-  executablePath = oldClangd;
-  lldCommand = 'lld';
+  _clangdPath = oldClangd;
 
   info(s: string) {
     this.event('info');
@@ -120,6 +178,21 @@ class FakeUI implements install.UI {
     this.event('progress');
     return work((fraction) => console.log('progress% ', 100 * fraction));
   }
+
+  options = clangdOptions;
+  installURL = 'https://clangd.llvm.org/installation.html';
+  lddCommand = 'ldd';
+  _executablePath = this.clangdPath;
+  get executablePath(): string { return this._executablePath; }
+  set executablePath(p: string) {
+    this._executablePath = p;
+    this._clangdPath = p;
+  }
+  get clangdPath(): string { return this._clangdPath; }
+  set clangdPath(p: string) {
+    this._clangdPath = p;
+    this._executablePath = p;
+  }
 };
 
 function test(name: string,
@@ -134,8 +207,8 @@ function test(name: string,
                          })
                          .listen(9999, '::', async () => {
                            console.log('Fake github serving...');
-                           ui.options.gh = releases;
-                           ui.lldCommand = exactLdd;
+                           install.fakeGitHubReleaseURL(releases);
+                           install.fakeLddCommand(exactLdd);
                            try {
                              await body(assert, ui);
                            } catch (e) {
@@ -158,33 +231,33 @@ test('install', async (assert, ui) => {
       path.join(ui.storagePath, 'install', '10.0', 'fake-clangd-10', 'clangd');
   assert.true(fs.existsSync(installedClangd),
               `Extracted clangd exists: ${installedClangd}`);
-  assert.equal(ui.executablePath, installedClangd);
+  assert.equal(ui.clangdPath, installedClangd);
   assert.deepEqual(
       ui.events, [/*download*/ 'progress', /*extract*/ 'slow', 'promptReload']);
 });
 
 test('install: no binary for platform', async (assert, ui) => {
-  ui.options.gh = incompatibleReleases;
+  install.fakeGitHubReleaseURL(incompatibleReleases);
   await install.installLatest(ui);
 
   const installedClangd =
       path.join(ui.storagePath, 'install', '10.0', 'fake-clangd-10', 'clangd');
   assert.false(fs.existsSync(installedClangd),
                `Extracted clangd exists: ${installedClangd}`);
-  assert.true(ui.executablePath.endsWith('fake-clangd-5/clangd'),
+  assert.true(ui.clangdPath.endsWith('fake-clangd-5/clangd'),
               'clangdPath unmodified');
   assert.deepEqual(ui.events, ['showHelp']);
 });
 
 test('install: wrong url', async (assert, ui) => {
-  ui.options.gh = wrongUrlReleases;
+  install.fakeGitHubReleaseURL(wrongUrlReleases);
   await install.installLatest(ui);
 
   const installedClangd =
       path.join(ui.storagePath, 'install', '10.0', 'fake-clangd-10', 'clangd');
   assert.false(fs.existsSync(installedClangd),
                `Extracted clangd exists: ${installedClangd}`);
-  assert.true(ui.executablePath.endsWith('fake-clangd-5/clangd'),
+  assert.true(ui.clangdPath.endsWith('fake-clangd-5/clangd'),
               'clangdPath unmodified');
   assert.deepEqual(ui.events,
                    [/*download*/ 'progress', /*download-fails*/ 'showHelp']);
@@ -192,21 +265,21 @@ test('install: wrong url', async (assert, ui) => {
 
 if (os.platform() == 'linux') {
   test('install: new glibc', async (assert, ui) => {
-    ui.lldCommand = newLdd;
+    install.fakeLddCommand(newLdd);
     await install.installLatest(ui);
 
     assert.deepEqual(ui.events, ['progress', 'slow', 'promptReload']);
   });
 
   test('install: old glibc', async (assert, ui) => {
-    ui.lldCommand = oldLdd;
+    install.fakeLddCommand(oldLdd);
     await install.installLatest(ui);
 
     assert.deepEqual(ui.events, ['showHelp'], 'not installed due to old glibc');
   });
 
   test('install: unknown glibc', async (assert, ui) => {
-    ui.lldCommand = notGlibcLdd;
+    install.fakeLddCommand(notGlibcLdd);
     await install.installLatest(ui);
 
     // Installed. It may not work, but also maybe our detection just failed.
@@ -227,8 +300,7 @@ test('install: reuse existing install', async (assert, ui) => {
       path.join(ui.storagePath, 'install', '10.0', 'fake-clangd-10', 'clangd');
   assert.false(fs.existsSync(installedClangd), 'Not extracted');
   assert.true(fs.existsSync(existingClangd), 'Not erased');
-  assert.equal(existingClangd, ui.executablePath,
-               'clangdPath is existing install');
+  assert.equal(existingClangd, ui.clangdPath, 'clangdPath is existing install');
   assert.deepEqual(ui.events, ['shouldReuse', 'promptReload']);
 });
 
@@ -245,7 +317,7 @@ test('install: overwrite existing install', async (assert, ui) => {
       path.join(ui.storagePath, 'install', '10.0', 'fake-clangd-10', 'clangd');
   assert.true(fs.existsSync(installedClangd), 'Extracted');
   assert.false(fs.existsSync(existingClangd), 'Erased');
-  assert.equal(installedClangd, ui.executablePath, 'clangdPath is new install');
+  assert.equal(installedClangd, ui.clangdPath, 'clangdPath is new install');
   assert.deepEqual(ui.events, [
     'shouldReuse', /*download*/ 'progress', /*extract*/ 'slow', 'promptReload'
   ]);
@@ -255,28 +327,28 @@ test('install: overwrite existing install', async (assert, ui) => {
 // This doesn't actually install anything (editors must call install()).
 
 test('update: from 5 to 10', async (assert, ui) => {
-  ui.executablePath = oldClangd;
+  ui.clangdPath = oldClangd;
   await install.checkUpdates(true, ui);
 
   assert.deepEqual(ui.events, ['promptUpdate']);
 });
 
 test('update: from 15 to 10', async (assert, ui) => {
-  ui.executablePath = newClangdV15;
+  ui.clangdPath = newClangdV15;
   await install.checkUpdates(true, ui);
 
   assert.deepEqual(ui.events, [/*up-to-date*/ 'info']);
 });
 
 test('update: from 16 to 10', async (assert, ui) => {
-  ui.executablePath = newClangdV16;
+  ui.clangdPath = newClangdV16;
   await install.checkUpdates(true, ui);
 
   assert.deepEqual(ui.events, [/*up-to-date*/ 'info']);
 });
 
 test('update: from apple to 10', async (assert, ui) => {
-  ui.executablePath = appleClangd;
+  ui.clangdPath = appleClangd;
   await install.checkUpdates(true, ui);
 
   assert.deepEqual(ui.events, [/*cant-compare*/ 'error']);
@@ -288,49 +360,49 @@ test('update: from apple to 10', async (assert, ui) => {
 // This handles lots of permutations but never installs anything, either.
 
 test('prepare: no clangd installed', async (assert, ui) => {
-  ui.executablePath = missingClangd;
+  ui.clangdPath = missingClangd;
   const status = await install.prepare(ui, true);
   await status.background;
 
-  assert.equal(status.executablePath, null);
+  assert.equal(status.clangdPath, null);
   assert.deepEqual(ui.events, ['promptInstall']);
 });
 
 test('prepare: not installed, unavailable', async (assert, ui) => {
-  ui.executablePath = missingClangd;
-  ui.options.gh = incompatibleReleases;
+  ui.clangdPath = missingClangd;
+  install.fakeGitHubReleaseURL(incompatibleReleases);
   const status = await install.prepare(ui, true);
   await status.background;
 
-  assert.equal(status.executablePath, null);
+  assert.equal(status.clangdPath, null);
   assert.deepEqual(ui.events, ['showHelp']);
 });
 
 test('prepare: old clangd installed', async (assert, ui) => {
-  ui.executablePath = oldClangd;
+  ui.clangdPath = oldClangd;
   const status = await install.prepare(ui, true);
   await status.background;
 
-  assert.equal(status.executablePath, oldClangd);
+  assert.equal(status.clangdPath, oldClangd);
   assert.deepEqual(ui.events, ['promptUpdate']);
 });
 
 test('prepare: updates disabled', async (assert, ui) => {
-  ui.executablePath = oldClangd;
+  ui.clangdPath = oldClangd;
   const status = await install.prepare(ui, false);
   await status.background;
 
-  assert.equal(status.executablePath, oldClangd);
+  assert.equal(status.clangdPath, oldClangd);
   assert.deepEqual(ui.events, []);
 });
 
 test('prepare: old clangd installed, new unavailable', async (assert, ui) => {
-  ui.executablePath = oldClangd;
-  ui.options.gh = incompatibleReleases;
+  ui.clangdPath = oldClangd;
+  install.fakeGitHubReleaseURL(incompatibleReleases);
   const status = await install.prepare(ui, true);
   await status.background;
 
-  assert.equal(status.executablePath, oldClangd);
+  assert.equal(status.clangdPath, oldClangd);
   assert.deepEqual(ui.events, []);
 });
 
@@ -343,9 +415,53 @@ test('prepare: new clangd installed', async (assert, ui) => {
 });
 
 test('prepare: unversioned clangd installed', async (assert, ui) => {
-  ui.executablePath = unversionedClangd;
+  ui.clangdPath = unversionedClangd;
   const status = await install.prepare(ui, true);
   await status.background;
   // We assume any custom-installed clangd is desired.
   assert.deepEqual(ui.events, []);
+});
+
+// downstream tests. mainly for checking the version range handling and not the
+// download/install lifecycle.
+
+test('install version range', async (assert, ui) => {
+  ui.options.versionRange = '<=14.0.0';
+  install.fakeGitHubTagRefsURL(tagRefs);
+  install.fakeGitHubReleaseURL((_, tag) => {
+    assert.equal(tag, '14.0.0');
+    return release(tag);
+  });
+  await install.installLatest(ui);
+
+  const installedClangd = path.join(ui.storagePath, 'install', '14.0.0',
+                                    'fake-clangd-14', 'clangd');
+  assert.true(fs.existsSync(installedClangd),
+              `Extracted clangd exists: ${installedClangd}`);
+  assert.equal(ui.clangdPath, installedClangd);
+  assert.deepEqual(
+      ui.events, [/*download*/ 'progress', /*extract*/ 'slow', 'promptReload']);
+});
+
+test('install version range: no match', async (assert, ui) => {
+  ui.options.versionRange = '>14.0.3 <15.0.0';
+  install.fakeGitHubTagRefsURL(tagRefs);
+  install.fakeGitHubReleaseURL(() => {
+    const message =
+        `Unexpected release retch by tag. No version should match the ${
+            ui.options.versionRange}.`;
+    assert.fail(message);
+    throw new Error(message);
+  });
+  await install.installLatest(ui);
+
+  const downloadRoot = path.join(ui.storagePath, 'download');
+  assert.false(fs.existsSync(downloadRoot),
+               `Download folder exists: ${downloadRoot}`);
+  const installRoot = path.join(ui.storagePath, 'install');
+  assert.false(fs.existsSync(installRoot),
+               `Install folder exists: ${installRoot}`);
+  assert.true(ui.clangdPath.endsWith('fake-clangd-5/clangd'),
+              'clangdPath unmodified');
+  assert.deepEqual(ui.events, ['showHelp']);
 });

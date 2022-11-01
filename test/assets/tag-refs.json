@@ -1,0 +1,1552 @@
+[
+  {
+    "ref": "refs/tags/snapshot_20200217",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDIxNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200217",
+    "object": {
+      "sha": "e8ca89de599a7c5ecade5b3c3131eb1e7bcf9662",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e8ca89de599a7c5ecade5b3c3131eb1e7bcf9662"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200223",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDIyMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200223",
+    "object": {
+      "sha": "47ba9b16a5bdfd4438259ba676af1c1e54af2711",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/47ba9b16a5bdfd4438259ba676af1c1e54af2711"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200301",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDMwMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200301",
+    "object": {
+      "sha": "47ba9b16a5bdfd4438259ba676af1c1e54af2711",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/47ba9b16a5bdfd4438259ba676af1c1e54af2711"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200308",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDMwOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200308",
+    "object": {
+      "sha": "47ba9b16a5bdfd4438259ba676af1c1e54af2711",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/47ba9b16a5bdfd4438259ba676af1c1e54af2711"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200315",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDMxNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200315",
+    "object": {
+      "sha": "e7efb79737410408a4c966118a117d7bb503eba7",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e7efb79737410408a4c966118a117d7bb503eba7"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200322",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDMyMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200322",
+    "object": {
+      "sha": "e7efb79737410408a4c966118a117d7bb503eba7",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e7efb79737410408a4c966118a117d7bb503eba7"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200329",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDMyOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200329",
+    "object": {
+      "sha": "e7efb79737410408a4c966118a117d7bb503eba7",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e7efb79737410408a4c966118a117d7bb503eba7"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200405",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDQwNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200405",
+    "object": {
+      "sha": "e7efb79737410408a4c966118a117d7bb503eba7",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e7efb79737410408a4c966118a117d7bb503eba7"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200412",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDQxMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200412",
+    "object": {
+      "sha": "e7efb79737410408a4c966118a117d7bb503eba7",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e7efb79737410408a4c966118a117d7bb503eba7"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200419",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDQxOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200419",
+    "object": {
+      "sha": "e7efb79737410408a4c966118a117d7bb503eba7",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e7efb79737410408a4c966118a117d7bb503eba7"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200426",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDQyNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200426",
+    "object": {
+      "sha": "d740d020b6631fa0d839a5b4bcd3e617847f3902",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d740d020b6631fa0d839a5b4bcd3e617847f3902"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200503",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDUwMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200503",
+    "object": {
+      "sha": "d740d020b6631fa0d839a5b4bcd3e617847f3902",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d740d020b6631fa0d839a5b4bcd3e617847f3902"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200510",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDUxMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200510",
+    "object": {
+      "sha": "55b106258d73fa800d129600dea23b7c7d2fcec9",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/55b106258d73fa800d129600dea23b7c7d2fcec9"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200517",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDUxNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200517",
+    "object": {
+      "sha": "55b106258d73fa800d129600dea23b7c7d2fcec9",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/55b106258d73fa800d129600dea23b7c7d2fcec9"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200524",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDUyNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200524",
+    "object": {
+      "sha": "55b106258d73fa800d129600dea23b7c7d2fcec9",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/55b106258d73fa800d129600dea23b7c7d2fcec9"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200531",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDUzMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200531",
+    "object": {
+      "sha": "55b106258d73fa800d129600dea23b7c7d2fcec9",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/55b106258d73fa800d129600dea23b7c7d2fcec9"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200607",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDYwNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200607",
+    "object": {
+      "sha": "55b106258d73fa800d129600dea23b7c7d2fcec9",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/55b106258d73fa800d129600dea23b7c7d2fcec9"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200614",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDYxNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200614",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200621",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDYyMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200621",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200628",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDYyOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200628",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200705",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDcwNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200705",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200712",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDcxMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200712",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200719",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDcxOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200719",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200726",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDcyNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200726",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200802",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDgwMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200802",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200809",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDgwOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200809",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200816",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDgxNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200816",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200823",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDgyMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200823",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200830",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDgzMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200830",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200906",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDkwNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200906",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200913",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDkxMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200913",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200920",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDkyMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200920",
+    "object": {
+      "sha": "45b6fbdfb03824b9279486c502e4098524fe4c8d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/45b6fbdfb03824b9279486c502e4098524fe4c8d"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20200927",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMDkyNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20200927",
+    "object": {
+      "sha": "45b6fbdfb03824b9279486c502e4098524fe4c8d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/45b6fbdfb03824b9279486c502e4098524fe4c8d"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201004",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTAwNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201004",
+    "object": {
+      "sha": "d1d8b39c4c35f6ad3ee1fcd7a96076e91dae247f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d1d8b39c4c35f6ad3ee1fcd7a96076e91dae247f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201011",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTAxMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201011",
+    "object": {
+      "sha": "5a40c019f125a5ab0855c5858218a4c9431c16ea",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/5a40c019f125a5ab0855c5858218a4c9431c16ea"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201018",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTAxOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201018",
+    "object": {
+      "sha": "8d1f3300c538f61b87ec73ea662cdf85d0d487b2",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/8d1f3300c538f61b87ec73ea662cdf85d0d487b2"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201027",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTAyNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201027",
+    "object": {
+      "sha": "a276cdf62f3c47e0364120f4d71081276c885f53",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a276cdf62f3c47e0364120f4d71081276c885f53"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201101",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTEwMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201101",
+    "object": {
+      "sha": "a276cdf62f3c47e0364120f4d71081276c885f53",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a276cdf62f3c47e0364120f4d71081276c885f53"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201108",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTEwOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201108",
+    "object": {
+      "sha": "a276cdf62f3c47e0364120f4d71081276c885f53",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a276cdf62f3c47e0364120f4d71081276c885f53"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201115",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTExNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201115",
+    "object": {
+      "sha": "a276cdf62f3c47e0364120f4d71081276c885f53",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a276cdf62f3c47e0364120f4d71081276c885f53"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201122",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTEyMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201122",
+    "object": {
+      "sha": "94b525b2ee23471a8a57d32ba1c141b5e3472fff",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/94b525b2ee23471a8a57d32ba1c141b5e3472fff"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201129",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTEyOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201129",
+    "object": {
+      "sha": "ae38d57cb93959aed75b06f22d1d8a9f948c5589",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ae38d57cb93959aed75b06f22d1d8a9f948c5589"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201206",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTIwNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201206",
+    "object": {
+      "sha": "ae38d57cb93959aed75b06f22d1d8a9f948c5589",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ae38d57cb93959aed75b06f22d1d8a9f948c5589"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201213",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTIxMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201213",
+    "object": {
+      "sha": "ae38d57cb93959aed75b06f22d1d8a9f948c5589",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ae38d57cb93959aed75b06f22d1d8a9f948c5589"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201220",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTIyMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201220",
+    "object": {
+      "sha": "ae38d57cb93959aed75b06f22d1d8a9f948c5589",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ae38d57cb93959aed75b06f22d1d8a9f948c5589"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20201227",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIwMTIyNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20201227",
+    "object": {
+      "sha": "ae38d57cb93959aed75b06f22d1d8a9f948c5589",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ae38d57cb93959aed75b06f22d1d8a9f948c5589"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210103",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDEwMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210103",
+    "object": {
+      "sha": "ae38d57cb93959aed75b06f22d1d8a9f948c5589",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ae38d57cb93959aed75b06f22d1d8a9f948c5589"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210110",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDExMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210110",
+    "object": {
+      "sha": "ae38d57cb93959aed75b06f22d1d8a9f948c5589",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ae38d57cb93959aed75b06f22d1d8a9f948c5589"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210113",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDExMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210113",
+    "object": {
+      "sha": "ebde6ecac4a19212edc80ff00bbddaf0bd04462d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ebde6ecac4a19212edc80ff00bbddaf0bd04462d"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210117",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDExNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210117",
+    "object": {
+      "sha": "ebde6ecac4a19212edc80ff00bbddaf0bd04462d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ebde6ecac4a19212edc80ff00bbddaf0bd04462d"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210124",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDEyNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210124",
+    "object": {
+      "sha": "ebde6ecac4a19212edc80ff00bbddaf0bd04462d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ebde6ecac4a19212edc80ff00bbddaf0bd04462d"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210216",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDIxNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210216",
+    "object": {
+      "sha": "835256346b8705065c53e9015542720e8cd4d61a",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/835256346b8705065c53e9015542720e8cd4d61a"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210218",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDIxOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210218",
+    "object": {
+      "sha": "bef10dc3c8c32825b89027138e6cd568ec9c82a5",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/bef10dc3c8c32825b89027138e6cd568ec9c82a5"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210221",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDIyMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210221",
+    "object": {
+      "sha": "bef10dc3c8c32825b89027138e6cd568ec9c82a5",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/bef10dc3c8c32825b89027138e6cd568ec9c82a5"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210302",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDMwMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210302",
+    "object": {
+      "sha": "411063a83a93acd5e4de99b933db2818bdb43e2e",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/411063a83a93acd5e4de99b933db2818bdb43e2e"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210307",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDMwNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210307",
+    "object": {
+      "sha": "d561d317fc1fe773da6a981b0382507f5962176f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d561d317fc1fe773da6a981b0382507f5962176f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210315",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDMxNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210315",
+    "object": {
+      "sha": "d561d317fc1fe773da6a981b0382507f5962176f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d561d317fc1fe773da6a981b0382507f5962176f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210321",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDMyMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210321",
+    "object": {
+      "sha": "d561d317fc1fe773da6a981b0382507f5962176f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d561d317fc1fe773da6a981b0382507f5962176f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210328",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDMyOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210328",
+    "object": {
+      "sha": "d561d317fc1fe773da6a981b0382507f5962176f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d561d317fc1fe773da6a981b0382507f5962176f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210404",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDQwNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210404",
+    "object": {
+      "sha": "d561d317fc1fe773da6a981b0382507f5962176f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d561d317fc1fe773da6a981b0382507f5962176f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210411",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDQxMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210411",
+    "object": {
+      "sha": "d561d317fc1fe773da6a981b0382507f5962176f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d561d317fc1fe773da6a981b0382507f5962176f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210418",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDQxOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210418",
+    "object": {
+      "sha": "d561d317fc1fe773da6a981b0382507f5962176f",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d561d317fc1fe773da6a981b0382507f5962176f"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210422",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDQyMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210422",
+    "object": {
+      "sha": "ec24d11c53edd900ac056b8a38618ea9b527afda",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ec24d11c53edd900ac056b8a38618ea9b527afda"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210425",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDQyNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210425",
+    "object": {
+      "sha": "ec24d11c53edd900ac056b8a38618ea9b527afda",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ec24d11c53edd900ac056b8a38618ea9b527afda"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210502",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDUwMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210502",
+    "object": {
+      "sha": "ec24d11c53edd900ac056b8a38618ea9b527afda",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/ec24d11c53edd900ac056b8a38618ea9b527afda"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210509",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDUwOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210509",
+    "object": {
+      "sha": "d78d99d3f313315fd46d43f868f4cdae3d6428e0",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d78d99d3f313315fd46d43f868f4cdae3d6428e0"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210523",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDUyMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210523",
+    "object": {
+      "sha": "608aa9953cf96d0cacf20b9071c4d09c25a2f380",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/608aa9953cf96d0cacf20b9071c4d09c25a2f380"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210530",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDUzMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210530",
+    "object": {
+      "sha": "608aa9953cf96d0cacf20b9071c4d09c25a2f380",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/608aa9953cf96d0cacf20b9071c4d09c25a2f380"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210606",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDYwNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210606",
+    "object": {
+      "sha": "608aa9953cf96d0cacf20b9071c4d09c25a2f380",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/608aa9953cf96d0cacf20b9071c4d09c25a2f380"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210613",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDYxMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210613",
+    "object": {
+      "sha": "186c1cfe5b8a5e94291654c8ebf7092d06d695f4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/186c1cfe5b8a5e94291654c8ebf7092d06d695f4"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210627",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDYyNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210627",
+    "object": {
+      "sha": "186c1cfe5b8a5e94291654c8ebf7092d06d695f4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/186c1cfe5b8a5e94291654c8ebf7092d06d695f4"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210704",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDcwNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210704",
+    "object": {
+      "sha": "186c1cfe5b8a5e94291654c8ebf7092d06d695f4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/186c1cfe5b8a5e94291654c8ebf7092d06d695f4"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210711",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDcxMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210711",
+    "object": {
+      "sha": "e2345b02611caf2f4566ac600e2e8a2c584df089",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e2345b02611caf2f4566ac600e2e8a2c584df089"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210718",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDcxOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210718",
+    "object": {
+      "sha": "e2345b02611caf2f4566ac600e2e8a2c584df089",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e2345b02611caf2f4566ac600e2e8a2c584df089"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210725",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDcyNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210725",
+    "object": {
+      "sha": "e2345b02611caf2f4566ac600e2e8a2c584df089",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/e2345b02611caf2f4566ac600e2e8a2c584df089"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210801",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDgwMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210801",
+    "object": {
+      "sha": "c576bf40d12ca0da1779540088e92d742c7635dd",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c576bf40d12ca0da1779540088e92d742c7635dd"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210808",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDgwOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210808",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210815",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDgxNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210815",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210822",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDgyMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210822",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210829",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDgyOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210829",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210905",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDkwNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210905",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210912",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDkxMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210912",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210919",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDkxOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210919",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20210926",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMDkyNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20210926",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211003",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTAwMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211003",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211010",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTAxMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211010",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211017",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTAxNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211017",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211024",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTAyNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211024",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211031",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTAzMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211031",
+    "object": {
+      "sha": "c0845399c6c3c33b2b988545e84eddc62add22b1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/c0845399c6c3c33b2b988545e84eddc62add22b1"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211107",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTEwNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211107",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211114",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTExNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211114",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211121",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTEyMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211121",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211128",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTEyOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211128",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211205",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTIwNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211205",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211212",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTIxMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211212",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20211219",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIxMTIxOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20211219",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220102",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDEwMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220102",
+    "object": {
+      "sha": "1a5759b2da1a064abf7d6d6b5358a4287c53e7ab",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a5759b2da1a064abf7d6d6b5358a4287c53e7ab"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220124",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDEyNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220124",
+    "object": {
+      "sha": "f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220130",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDEzMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220130",
+    "object": {
+      "sha": "f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220206",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDIwNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220206",
+    "object": {
+      "sha": "f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220213",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDIxMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220213",
+    "object": {
+      "sha": "f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/f707dfdeab03a4bdcb89ca1f3ce3746deb7178a4"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220227",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDIyNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220227",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220306",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDMwNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220306",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220313",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDMxMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220313",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220320",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDMyMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220320",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220327",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDMyNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220327",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220403",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDQwMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220403",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220410",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDQxMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220410",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220417",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDQxNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220417",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220424",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDQyNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220424",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220501",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDUwMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220501",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220508",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDUwOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220508",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220515",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDUxNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220515",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220522",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDUyMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220522",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220529",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDUyOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220529",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220605",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDYwNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220605",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220612",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDYxMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220612",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220619",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDYxOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220619",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220626",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDYyNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220626",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220703",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDcwMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220703",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220710",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDcxMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220710",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220717",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDcxNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220717",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220724",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDcyNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220724",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220731",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDczMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220731",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220807",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDgwNw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220807",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220814",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDgxNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220814",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220821",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDgyMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220821",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220828",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDgyOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220828",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220904",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDkwNA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220904",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220911",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDkxMQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220911",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220918",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDkxOA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220918",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20220925",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMDkyNQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20220925",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20221002",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMTAwMg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20221002",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20221009",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMTAwOQ==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20221009",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20221016",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMTAxNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20221016",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20221023",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMTAyMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20221023",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20221030",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMTAzMA==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20221030",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/snapshot_20221106",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy9zbmFwc2hvdF8yMDIyMTEwNg==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/snapshot_20221106",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/10rc3",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMHJjMw==",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/10rc3",
+    "object": {
+      "sha": "47ba9b16a5bdfd4438259ba676af1c1e54af2711",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/47ba9b16a5bdfd4438259ba676af1c1e54af2711"
+    }
+  },
+  {
+    "ref": "refs/tags/10.0.0",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMC4wLjA=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/10.0.0",
+    "object": {
+      "sha": "55b106258d73fa800d129600dea23b7c7d2fcec9",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/55b106258d73fa800d129600dea23b7c7d2fcec9"
+    }
+  },
+  {
+    "ref": "refs/tags/11.0.0-rc1",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMS4wLjAtcmMx",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/11.0.0-rc1",
+    "object": {
+      "sha": "9a0cad43e862f0f9976ee04a132a376b29ecbbad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/9a0cad43e862f0f9976ee04a132a376b29ecbbad"
+    }
+  },
+  {
+    "ref": "refs/tags/11.0.0-rc3",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMS4wLjAtcmMz",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/11.0.0-rc3",
+    "object": {
+      "sha": "45b6fbdfb03824b9279486c502e4098524fe4c8d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/45b6fbdfb03824b9279486c502e4098524fe4c8d"
+    }
+  },
+  {
+    "ref": "refs/tags/11.0.0",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMS4wLjA=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/11.0.0",
+    "object": {
+      "sha": "40dcef1871cc247c716df4112e3f8aa7cf56e917",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/40dcef1871cc247c716df4112e3f8aa7cf56e917"
+    }
+  },
+  {
+    "ref": "refs/tags/12.0.0-rc1",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMi4wLjAtcmMx",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/12.0.0-rc1",
+    "object": {
+      "sha": "405dee024a1aecda6d18ffc89a396fc4be71dd24",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/405dee024a1aecda6d18ffc89a396fc4be71dd24"
+    }
+  },
+  {
+    "ref": "refs/tags/12.0.0-rc2",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMi4wLjAtcmMy",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/12.0.0-rc2",
+    "object": {
+      "sha": "bef10dc3c8c32825b89027138e6cd568ec9c82a5",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/bef10dc3c8c32825b89027138e6cd568ec9c82a5"
+    }
+  },
+  {
+    "ref": "refs/tags/12.0.0",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMi4wLjA=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/12.0.0",
+    "object": {
+      "sha": "d36dadfd99048c351ee1126930db1d92acd455f6",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/d36dadfd99048c351ee1126930db1d92acd455f6"
+    }
+  },
+  {
+    "ref": "refs/tags/12.0.1",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMi4wLjE=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/12.0.1",
+    "object": {
+      "sha": "522c194a6845cd30c002c6ec20af649aa3ae8237",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/522c194a6845cd30c002c6ec20af649aa3ae8237"
+    }
+  },
+  {
+    "ref": "refs/tags/13.0.0",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xMy4wLjA=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/13.0.0",
+    "object": {
+      "sha": "a607c6dd40de696abe1a64b208365da7988623af",
+      "type": "tag",
+      "url": "https://api.github.com/repos/clangd/clangd/git/tags/a607c6dd40de696abe1a64b208365da7988623af"
+    }
+  },
+  {
+    "ref": "refs/tags/14.0.0",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xNC4wLjA=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/14.0.0",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/14.0.1",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xNC4wLjE=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/14.0.1",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/14.0.2",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xNC4wLjI=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/14.0.2",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/14.0.3",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xNC4wLjM=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/14.0.3",
+    "object": {
+      "sha": "1a90fba2718b4775b1d69998788b096dc1d21b15",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/1a90fba2718b4775b1d69998788b096dc1d21b15"
+    }
+  },
+  {
+    "ref": "refs/tags/15.0.0",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xNS4wLjA=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/15.0.0",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/15.0.1",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xNS4wLjE=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/15.0.1",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  },
+  {
+    "ref": "refs/tags/15.0.3",
+    "node_id": "MDM6UmVmMTY1NzQzMTQ4OnJlZnMvdGFncy8xNS4wLjM=",
+    "url": "https://api.github.com/repos/clangd/clangd/git/refs/tags/15.0.3",
+    "object": {
+      "sha": "a729875fb1640c811c95b7094c8387140c9b9209",
+      "type": "commit",
+      "url": "https://api.github.com/repos/clangd/clangd/git/commits/a729875fb1640c811c95b7094c8387140c9b9209"
+    }
+  }
+]
