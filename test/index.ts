@@ -407,7 +407,7 @@ test('prepare: old clangd installed, new unavailable', async (assert, ui) => {
 });
 
 test('prepare: new clangd installed', async (assert, ui) => {
-  ui.executablePath = newClangdV15;
+  ui.clangdPath = newClangdV15;
   const status = await install.prepare(ui, true);
   await status.background;
 
