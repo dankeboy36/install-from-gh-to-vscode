@@ -252,14 +252,21 @@ interface TagRef {
 // metadata for the latest stable executable release.
 export async function latestRelease(ui: UI): Promise<Release> {
   const version = await latestCompatibleVersion(ui);
-  const response =
-      await fetch(githubReleaseURL(ui.options.gh, version),
-                  {headers: {'Accept': 'application/vnd.github+json'}});
-  if (!response.ok) {
-    console.log(response.url, response.status, response.statusText);
-    throw new Error(`Can't fetch release: ${response.statusText}`);
+  const timeoutController = new AbortController();
+  const timeout = setTimeout(() => { timeoutController.abort(); }, 5000);
+  try {
+    const response = await fetch(githubReleaseURL(ui.options.gh, version), {
+      headers: {'Accept': 'application/vnd.github+json'},
+      signal: timeoutController.signal
+    });
+    if (!response.ok) {
+      console.log(response.url, response.status, response.statusText);
+      throw new Error(`Can't fetch release: ${response.statusText}`);
+    }
+    return await response.json() as Release;
+  } finally {
+    clearTimeout(timeout)
   }
-  return await response.json() as Release;
 }
 
 async function latestCompatibleVersion(ui: UI): Promise<string|undefined> {
