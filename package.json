@@ -1,6 +1,6 @@
 {
   "name": "install-from-gh-to-vscode",
-  "version": "0.1.0-beta.8",
+  "version": "0.1.0-beta.9",
   "description": "Lib for VS Code extensions installing executables from GitHub",
   "main": "out/src/index.js",
   "types": "out/src/index.d.ts",
@@ -27,7 +27,8 @@
     "test": "tsc -p ./ && tape -r source-map-support/register 'out/test/**/*.js' | tap-spec",
     "format": "clang-format -i --glob=\"{src,test}/**/*.ts\"",
     "git-clang-format": "git-clang-format",
-    "prepare": "npm run test && npm run format && tsc -p ./"
+    "prepare": "npm run test && npm run format && tsc -p ./",
+    "example": "ts-node ./src/example/index.ts"
   },
   "dependencies": {
     "abort-controller": "^3.0.0",
@@ -58,6 +59,7 @@
     "tap-spec": "^5.0.0",
     "tape": "^5.0.0",
     "tmp-promise": "^2.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^3.8.3"
   }
 }

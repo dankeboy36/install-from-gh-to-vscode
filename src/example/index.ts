@@ -24,14 +24,15 @@ class Noop implements UI {
 
 const arduinoCliOptions: Options = {
   // pinned version range
-  versionRange: '<=0.27.0',
+  versionRange: '<=v0.35.0-rc.7',
   gh: {owner: 'arduino', repo: 'arduino-cli'},
   executableName: 'arduino-cli',
   versionFlags: ['version', '--format', 'json'],
   parseVersion(output: string):
       string { return JSON.parse(output.trim()).VersionString; },
   async pickAsset(assetNames: string[]): Promise<number> {
-    return 6; // 'arduino-cli_0.27.0_macOS_64bit.tar.gz'
+    // console.log(assetNames[7]); // arduino-cli_0.35.0-rc.7_macOS_64bit.tar.gz
+    return 7;
   }
 };
 
