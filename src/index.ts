@@ -285,7 +285,8 @@ async function latestCompatibleVersion(ui: UI): Promise<string|undefined> {
                    .reverse();
   for (const tag of tags) {
     if (versionConstrains.test(tag)) {
-      return tag.version;
+      return tag.raw; // use the raw semver string
+                      // https://github.com/arduino/arduino-cli/pull/2374
     }
   }
   throw new Error(`Could not find a compatible version for ${
